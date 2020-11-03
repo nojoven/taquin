@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+    <title>JEU DU TAQUIN</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <style>
+
+    /*  DECLARATION DES VARIABLES CSS COULEUR  */    
+    :root { 
+  	    --principale-couleur-de-fond: white;
+  	    --seconde-couleur-de-fond: #eee;
+  	    --principale-couleur-de-texte: black;
+  	    --couleur-des-liens: #222;
+  	    --couleur-des-liens-au-survol: darkred;
+  	    --couleur-des-titres: darkred;
+  	    --couleur-des-bordures: darkred;
+  	    --couleur-des-ombres-textes: darkred;
+  	    --couleur-des-ombres-boites: darkred; 
+    }
+
+    /* RESET CSS */
+    * { text-align: center; margin: 0; }
+    *, *::before, *::after {box-sizing: border-box;}
+    body {
+    font-family: helvetica, sans-serif;  
+    font-size: 16px;  
+    color: var(--principale-couleur-de-texte, #323232); 
+    background-color: var(--principale-couleur-de-fond, white); 
+    width: 100%;
+    max-width: 1200px;  /*  Points d'arrêt:  576px / 768px / 992px / 1200px  */
+    margin: 0 auto;
+    }
+    header, main, footer { width: 100%; margin: 0 auto; padding: 10px; } /* Centrage site,*/
+    section { border: 0; margin: 15px; padding: 0 20px 0 20px; }
+    div, section, footer { text-align: center; background-color: var(--seconde-couleur-de-fond, #eee); }
+    p { text-align: justify; }
+    h1 { text-align: center; }
+    h2, h3, h4 { text-align: left; }
+    h1, .h1 { padding: 40px; font-size: 38px; color: var(--couleur-des-titres, darkred); margin-bottom: 40px; }
+    h2, .h2 { padding: 25px; font-size: 30px; color: var(--couleur-des-titres, darkred); margin-bottom: 30px; text-decoration: underline;}
+    h3, .h3 { padding: 20px; font-size: 22px; color: var(--couleur-des-titres, darkred); margin-bottom: 20px; text-decoration: underline;}
+    h1 a, h2 a, h3 a { color: var(--couleur-des-liens, darkred); }    
+    h1 a:hover, h2 a:hover, h3 a:hover, h4 a: { color: var(--couleur-des-liens-au-survol, darkred); text-decoration: none; }   
+    ul, ol { list-style: none; padding: 0; } 
+    table { border-collapse: none; margin: 50px auto; border: 2px solid grey; }
+
+    /*  STYLES DES LIENS (sauf si titre, ou item d'un menu) */
+        a { font-weight: bold; text-decoration: none; color: var(--couleur-des-liens, black); }
+    a:hover {text-decoration: none; cursor: pointer; color: var(--couleur-des-liens-au-survol, black); }
+
+    /*  CLASSES D'AFFICHAGE   */
+    .simpleDIV {float: right; width: 100%; }
+    .doubleDIV {float:left; width: 50%;}
+    .clearDIV {clear: both;}
+
+    /*  CLASSE POUR DEBUGGER EN PHASE DE DEVELOPPEMENT */
+    .debug { border: 1px solid red !important; }   /*  Montre les bordures des éléments pour y voir plus clair  */
+ 
+ 	/*  DIVERS  */
+    .boxshadow { box-shadow: 0 0.8rem 1rem grey;}
+    .txtshadow { text-shadow: 0 0.8rem 1rem darkred;}
+
+ 	/*  STYLE DES ELEMENTS IDENTIFIES  */
+    #nav { position: sticky; top: 0; }
+    #section1 { height: 140px;    /*  Correspond à la banniere */ }
+    
+    /*  STYLE DU MENU DE NAVIGATION  */
+    #menu{ border: 3px solid black; background-color: var(--seconde-couleur-de-fond, #bdbdbd); } 
+    #menu ul { 
+    border-left: 6px solid var(--couleur-des-bordures, darkred); 
+    border-right: 6px solid var(--couleur-des-bordures, darkred); 
+    border-top: 1px dashed var(--couleur-des-bordures, darkred); 
+    border-bottom: 1px dashed var(--couleur-des-bordures, darkred); 
+     } 
+    #menu li { display: inline-block; padding: 10px 10px 15px 10px; width: 250px;} 
+     
+       
+
+    /*   INPUTS, TEXTAREAS, SELECTS  */
+	select {  
+	border: 2px solid darkred;
+	font-weight: bold;
+	font-size: 16px;
+	text-shadow: 0 1px 0  var(--couleur-des-ombres-textes, #71697A);
+	padding: 10px 12px 10px 12px;
+	margin: 10px 0;
+	border-radius: 7px;
+	background-color: white;
+ 	}
+	input[type=submit], input[type=button], .btn{ 
+	max-width: 200px;
+	height: 27px;
+	margin-bottom: 15px;
+	margin-left: 35px;
+	text-align: center; 
+	cursor: pointer;
+	box-shadow: 0 0 10px var(--couleur-des-ombres-boites, #71697A);
+	-webkit-animation-name: clignotant; 
+	-webkit-animation-duration: 0.7s; 
+	-webkit-animation-iteration-count:infinite; 
+	animation-name: clignotant; 
+	animation-duration: 0.7s; 
+	animation-iteration-count:infinite; 
+ 	}
+	input[type=texte]:hover, input[type=email]:hover, input[type=password]:hover, select:hover, textarea:hover { 
+	border-radius: 10px;
+	border: 2px solid green;
+	background-color: #eeeeee;  
+	width: 300px;
+	}
+
+	input[type=texte]:focus, input[type=email]:focus, input[type=password]:focus, select:focus, textarea:focus { 
+	border: 2px solid darkred;
+	box-shadow:0 0 10px var(--couleur-des-ombres-boites, #71697A); 
+ 	}
+
+    /*  TRANSITIONS, ANIMATIONS... */
+	@-webkit-keyframes clignotant {
+	0%{box-shadow:5px 2px 10px var(--couleur-des-ombres-boites, #71697A); text-shadow: 1px 1px 2px var(--couleur-des-ombres-textes, #71697A);}
+	50%{box-shadow:0 0 0 var(--couleur-des-ombres-boites, #71697A); text-shadow: 0 1px 0  var(--couleur-des-ombres-textes, #71697A);}
+	100%{box-shadow:5px 2px 10px  var(--couleur-des-ombres-boites, #71697A); text-shadow: 1px 1px 2px var(--couleur-des-ombres-boites, #71697A);}
+	}
+	@keyframes clignotant {
+	0%{box-shadow:5px 2px 10px  var(--couleur-des-ombres-boites, #71697A); text-shadow: 1px 1px 2px var(--couleur-des-ombres-textes, #71697A);}
+	50%{box-shadow:0 0 0 var(--couleur-des-ombres-boites, #71697A); text-shadow: 0 1px 0 var(--couleur-des-ombres-textes, #71697A);}
+	100%{box-shadow:5px 2px 10px var(--couleur-des-ombres-boites, #71697A); text-shadow: 1px 1px 2px  var(--couleur-des-ombres-textes, #71697A);}
+	}
+	.tourne { transform: rotate(-2deg); }                  /* Affiche un element légèrement oblique */
+	.fade {transition: opacity 0.15s linear;}              /* Fait disparaitre un element progressivement */
+
+	/*  CLASSES SPECIFIQUES A CE PROJET-CI  */  
+	.case {
+	width: 50px;
+	height: 50px;
+	background-color: grey;
+	border:1px dashed black;
+	}
+	.vide {
+	background-color: white;
+	width: 50px;
+	min-width: 100%;
+	max-width: 100%;
+	height: 100%;
+	min-height: 100%;
+	max-height: 100%;
+	border: 0!important;
+	margin: 0!important;
+	border-radius:0!important;
+	border: 1px dashed black;
+	}
+	.nonvide {
+	background-color: grey;
+	width: 50px;
+	min-width: 100%;
+	max-width: 100%;
+	height: 100%;
+	min-height: 100%;
+	max-height: 100%;
+	margin: 0!important;
+	line-height: 270%;
+	}
+	#grille { width: 156px!important; height: 156px!important;	}
+	#grille td { border: 1px dashed black!important; }
+
+	</style>
+
+    <script>
+
+    	// Déclaration des variables
+		
+
+
+
+
+        function init() {
+        	// Fonction lançée au chargement de la page (body > onload)
+    		document.getElementById('case1').innerHTML ="<a href='javascript:cellClick(1,3);'><div class='nonvide'>3</div></a>";
+    		document.getElementById('case2').innerHTML ="<a href='javascript:cellClick(2,4);'><div class='nonvide'>4</div></a>";
+    		document.getElementById('case3').innerHTML ="<a href='javascript:cellClick(3,2);'><div class='nonvide'>2</div></a>";
+    		document.getElementById('case4').innerHTML ="<a href='javascript:cellClick(4,8);'><div class='nonvide'>8</div></a>";
+    		document.getElementById('case5').innerHTML ="<a href='javascript:cellClick(5,0);'><div class='vide'></div></a>";
+    		document.getElementById('case6').innerHTML ="<a href='javascript:cellClick(6,1);'><div class='nonvide'>1</div></a>";
+    		document.getElementById('case7').innerHTML ="<a href='javascript:cellClick(7,7);'><div class='nonvide'>7</div></a>";
+    		document.getElementById('case8').innerHTML ="<a href='javascript:cellClick(8,6);'><div class='nonvide'>6</div></a>";
+    		document.getElementById('case9').innerHTML ="<a href='javascript:cellClick(9,5);'><div class='nonvide'>5</div></a>";
+        }
+
+    	
+        function cellClick(CELLULE_CLIQUEE,MEMOIRE) { 
+    	    // Vérification du coup joué:
+    	    // 	+ Pour ne pas comptabiliser 2 clics sur la meme case
+    	    // 	+ Pour ne pas comptabiliser lorsque le premier coup est la case vide
+    	    // 	+ Pour ne pas comptabiliser lorsque le premier coup selectionne une case qu'on ne peut pas déplacer (qui n'a pas un coté commun 	avec la case vide)
+        	
+        	jouerCoup(); // Quand tout est vérifié, on lance la fonction jouerCoup()	
+        }
+
+
+        function jouerCoup(){ 
+        	// On déplace les 2 cases
+
+    		verifVictoire(); // On lance verifVictoire() apres chaque coup joué pour vérifier si le joueur a gagné ou pas. 
+        }
+
+        function verifVictoire(){ 
+			// On verifie si le joueur a gagné ou pas
+    		// Si oui, message de felicitation dans le footer avec indication du nombre de coups!
+        }
+
+    </script>
+</head>
+
+<body onload="init();">
+
+    <header>
+		<nav id="nav">
+        	<ul id="menu">
+          		<li><h3 style="font-size: 12pt; width: 350px; margin: 0 auto;">Joueur: <span id="joueur"></span> <span id="nom_joueur"></span></h3></li>
+          		<li style="margin-left: 350px;"><h3 style="font-size: 12pt; min-width: 250px; margin: 0 auto;">Nombre de coups: <span id="coups_joues"></h3></li>
+        	</ul>
+    	</nav>
+    </header>
+
+    <main>
+		<section id="section1" class="" style="height:70px; background: white;margin: 0 auto;padding: 0;">
+ 			<h1 class="txtshadow" style="padding:10px;">JEU DU TAQUIN EN JAVASCRIPT</h1>
+    	</section>
+
+    	<section id="section4" class="" style="">
+        	<div class="doubleDIV" style="min-height:400px;" name="S4D1" id="S4D1">
+				<table id="grille" name="grille" class="grille boxshadow">
+					<tr>
+						<td id="case1" name="case1" class="case"></td>
+						<td id="case2" name="case2" class="case"></td>
+						<td id="case3" name="case3" class="case"></td>
+					</tr>
+					<tr>
+						<td id="case4" name="case4" class="case"></td>
+						<td id="case5" name="case5" class="case"></td>
+						<td id="case6" name="case6" class="case"></td>
+					</tr>
+					<tr>
+						<td id="case7" name="case7" class="case"></td>
+						<td id="case8" name="case8" class="case"></td>
+						<td id="case9" name="case9" class="case"></td>
+					</tr>
+				</table>
+			</div>
+        	<div class="doubleDIV" style="min-height:400px;">
+          		<span class="h3" style="display: block; margin-bottom: 25px; text-decoration: underline;">Fonctionnalités</span>
+
+              	<span><a href="javascript:location.reload();" class="btn" style="margin-bottom: 15px; padding: 10px;">Nouvelle partie</a></span>
+              	<!-- Cédric, moi j'affichais  quelques variables ici pour vérifier et débugguer mon script:
+              	<span style="display:none;">Coup dans la paire: </span> <span style="display:none;" id="coup_dans_la_paire">0 -> </span>
+              	<span style="display:none;" id="premiere_cellule_cliquee">- / </span><span style="display:none;" id="derniere_cellule_cliquee">-</span>
+              	<span style="display:none;">Case vide: </span> <span style="display:none;" id="case_vide"><br></span>
+              	<span style="display:none;">Coups joués: </span> <span style="display:none;" id=""><br></span>
+              	<span style="display:none;">Numéro en mémoire: </span> <span style="display:none;" id="num_en_memoire"></span> 
+              	 -->
+            </div>
+        	<div class="clearDIV"></div>
+    	</section>
+    </main>
+
+	<footer id="footer" style="">
+      	<div>
+      		<span id="message_victoire">Pour débuter une partie, veuillez d'abord cliquer sur la case à déplacer, puis sur la case vide.</span>
+      	</div>
+    </footer>
+
+<script src="jquery.min.js"></script>
+</body>
+</html>
