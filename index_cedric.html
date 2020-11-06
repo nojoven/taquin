@@ -165,7 +165,17 @@
 	#grille td { border: 1px dashed black!important; }
 
 	</style>
-
+<!--  
+	Fonctionnement:
+- 1 clic sur une case la sélectionne
+- le second clic la déplace 
+		   s'il est effectué sur la case vide
+		   si la case vide est adjacente
+- tout second clic invalide annule le premier clic		   
+- alerte succes si la position des cases est la bonne : 
+   1 à 8 de gauche à droite et bas en haut puis derniere est la vide
+- succès il n'est plus possible de déplacer la case   
+-->
     <script>
 
     	// Déclaration des variables
