@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
     <title>JEU DU TAQUIN</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+	<script src="jquery.min.js"></script>
     <style>
 
     /*  DECLARATION DES VARIABLES CSS COULEUR  */    
@@ -196,7 +196,11 @@
     		document.getElementById('case7').innerHTML ="<a href='javascript:cellClick(7,7);'><div class='nonvide'>7</div></a>";
     		document.getElementById('case8').innerHTML ="<a href='javascript:cellClick(8,6);'><div class='nonvide'>6</div></a>";
     		document.getElementById('case9').innerHTML ="<a href='javascript:cellClick(9,5);'><div class='nonvide'>5</div></a>";
-        }
+        
+
+		
+		
+		}
 
     	
         function cellClick(CELLULE_CLIQUEE,MEMOIRE) { 
@@ -258,6 +262,20 @@
 						<td id="case9" name="case9" class="case"></td>
 					</tr>
 				</table>
+				<script>
+					var myTableArray = Array.from(document.getElementById('grille'));
+
+						$("table#grille tr").each(function() {
+							var arrayOfThisRow = [];
+							var tableData = $(this).find('td');
+							if (tableData.length > 0) {
+								tableData.each(function() { arrayOfThisRow.push($(this).text()); });
+								myTableArray.push(arrayOfThisRow);
+							}
+						});
+
+						alert(myTableArray);					
+				</script>
 			</div>
         	<div class="doubleDIV" style="min-height:400px;">
           		<span class="h3" style="display: block; margin-bottom: 25px; text-decoration: underline;">Fonctionnalités</span>
@@ -281,6 +299,6 @@
       	</div>
     </footer>
 
-<script src="jquery.min.js"></script>
+
 </body>
 </html>
